@@ -58,8 +58,6 @@ body::after{ content:''; position:fixed; bottom:-180px; left:-180px; width:560px
 .stamp-orbit text{ font-family:'Inter',sans-serif; font-size:9.6px; font-weight:700; letter-spacing:.22em;
   text-transform:uppercase; fill:var(--purple); }
 @keyframes orbit-spin{ to{ transform:rotate(360deg); } }
-.stamp-halo{ position:absolute; inset:-10px; border-radius:50%; border:1px dashed rgba(155,111,212,.4); }
-
 .stamp-ring{
   position:relative; width:100%; aspect-ratio:1/1; border-radius:50%; padding:6px;
   background:conic-gradient(from 180deg,
@@ -77,9 +75,11 @@ body::after{ content:''; position:fixed; bottom:-180px; left:-180px; width:560px
   overflow:hidden; border:none; padding:0; cursor:pointer;
 }
 .stamp::before{ content:''; position:absolute; inset:0; border-radius:50%; box-shadow: var(--shadow-card); pointer-events:none; }
-.stamp-mark-wrap{ animation: bob 3.4s ease-in-out infinite; display:flex; align-items:center; justify-content:center; }
+.stamp-mark-wrap{ animation: bob 3.4s ease-in-out infinite; display:flex; align-items:center; justify-content:center;
+  border-radius:50%; overflow:hidden; }
 @keyframes bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-6px); } }
-.stamp-mark{ width:158px; height:auto; display:block; filter: drop-shadow(0 10px 18px rgba(90,50,140,.25)); }
+.stamp-mark{ width:158px; height:158px; display:block; object-fit:cover; border-radius:50%;
+  filter: drop-shadow(0 6px 14px rgba(90,50,140,.25)); }
 
 .tap-label{ margin-top:32px; font-family:'Bricolage Grotesque',sans-serif; font-variation-settings:"wght" 650,"opsz" 92;
   font-size:13px; color:var(--muted); display:flex; align-items:center; gap:8px; }
@@ -93,7 +93,8 @@ body::after{ content:''; position:fixed; bottom:-180px; left:-180px; width:560px
 .reveal{ display:none; }
 .reveal.show{ display:block; }
 .rsection{ width:100%; display:flex; flex-direction:column; align-items:center; text-align:center;
-  padding:64px 24px; position:relative; z-index:1; opacity:0; transform:translateY(14px); }
+  padding:34px 24px; position:relative; z-index:1; opacity:0; transform:translateY(14px); }
+.rsection + .rsection{ padding-top:8px; }
 .reveal.show .rsection{ animation: rise .6s cubic-bezier(.2,.8,.2,1) forwards; }
 .reveal.show .rsection:nth-child(1){ animation-delay:.02s; }
 .reveal.show .rsection:nth-child(2){ animation-delay:.1s; }
@@ -168,10 +169,11 @@ h1 .accent{ color:var(--orange); }
   .gift-stage{ padding:64px 40px; }
   .from{ font-size:12px; margin-bottom:46px; }
   .stamp-wrap{ width:270px; }
-  .stamp-mark{ width:188px; }
+  .stamp-mark{ width:188px; height:188px; }
   .tap-label{ font-size:14px; margin-top:36px; }
 
-  .rsection{ padding:88px 40px; max-width:1080px; margin:0 auto; }
+  .rsection{ padding:48px 40px; max-width:1080px; margin:0 auto; }
+  .rsection + .rsection{ padding-top:16px; }
   .tivo-mark{ padding:7px 20px 7px 7px; margin-bottom:30px; }
   .tivo-mark-logo{ width:34px; height:34px; }
   .tivo-mark span{ font-size:15px; }
@@ -204,7 +206,6 @@ h1 .accent{ color:var(--orange); }
     <div class="from">Un regalo del equipo TIVO</div>
 
     <div class="stamp-wrap" id="box">
-      <div class="stamp-halo"></div>
       <div class="stamp-orbit" aria-hidden="true">
         <svg viewBox="0 0 200 200">
           <defs><path id="orbitPath" d="M100,100 m-84,0 a84,84 0 1,1 168,0 a84,84 0 1,1 -168,0"/></defs>
